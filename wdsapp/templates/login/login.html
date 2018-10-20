@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-link" href="{% url 'index' %}">&nbsp Django </a></li>
+          <li><a class="navbar-link" href="{% url 'admin:index' %}">&nbsp Admin </a></li>
+          <li><a class="navbar-band" href="{% url 'login:register' %}">&nbsp Register </a></li>
+          {% csrf_token %}
+          {% if user.is_authenticated %}
+          <li><a class="navbar-link" href="{% url 'login:news' %}">&nbsp News </a></li>
+          <li><a class="navbar-link" href="{% url 'login:stockprice' %}">&nbsp Stock Price </a></li>
+           <li><a class="navbar-link" href="{% url 'login:dashboard' %}">&nbsp dashboard </a></li>
+           <li><a class="navbar-link" href="{% url 'login:user_logout' %}">&nbsp logout </a></li>
+
+          {% else %}
+            <li><a class="navbar-link" href="{% url 'login:userlogin' %}">&nbsp Login </a></li>
+          {% endif %}
+        </ul>
+     </div>
+   </nav>
+<div class="container-fluid">
+  {% block body_block %}
+  {% endblock %}
+</div>
+
+  </body>
+  <!-- Footer -->
+  <footer class="page-footer font-small black">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href=""> econclub</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+</html>

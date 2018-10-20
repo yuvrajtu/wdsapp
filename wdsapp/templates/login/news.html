@@ -1,0 +1,18 @@
+{% extends 'login/login.html' %}
+{% load staticfiles %}
+{% block body_block %}
+<table>
+  <thead>
+    <th>Serial</th>
+    <th>News</th>
+  </thead>
+  {% for nw in news %}
+  <tr>
+    <td>{{ nw.Id }}</td>
+    <td>{{ nw.StockNews }}</td>
+  </tr>
+  {%endfor%}
+</table>
+
+
+{% endblock %}
