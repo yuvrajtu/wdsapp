@@ -1,0 +1,25 @@
+{% extends 'login/login.html' %}
+{% load staticfiles %}
+{% block body_block %}
+<table class="table">
+  <thead>
+    <th>Team Number</th>
+    <th>Stock Name</th>
+    <th>NumberOfStock</th>
+    <th>Price</th>
+  </thead>
+{% if brokerdashdata %}
+  {% for dd in brokerdashdata %}
+  <tr>
+    <td>{{ dd.author }}</td>
+    <td>{{ dd.StockName }}</td>
+    <td>{{ dd.NumberOfStock }}</td>
+    <td>{{ dd.SellingPrice }}</td>
+
+  </tr>
+  {%endfor%}
+{% endif %}
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'login/login.html' %}
+{% load staticfiles %}
+{% block body_block %}
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+
+      <th scope="col">News</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      {% csrf_token %}
+      {% for nw in news %}
+      <tr>
+
+        <td align="center">{{ nw.StockNews }}</td>
+      </tr>
+      {%endfor%}
+
+
+
+  </tbody>
+</table>
+
+
+
+
+{% endblock %}
