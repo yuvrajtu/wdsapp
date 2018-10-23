@@ -28,6 +28,7 @@ SECRET_KEY = 'rkj-ftxuys+h8rpgdqx+tf1z^dbvnsd6ba#%47qwa3h21n(j0w'
 DEBUG = True
 
 ALLOWED_HOSTS = ['yuvrajhcs.pythonanywhere.com',
+                 'economicsclubtu.pythonanywhere.com',
  'localhost']
 
 
