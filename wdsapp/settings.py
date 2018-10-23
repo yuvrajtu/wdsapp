@@ -27,7 +27,7 @@ SECRET_KEY = 'rkj-ftxuys+h8rpgdqx+tf1z^dbvnsd6ba#%47qwa3h21n(j0w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yuvrajhcs.pythonanywhere.com','economicsclubtu.pythonanywhere.com',
+ALLOWED_HOSTS = ['yuvrajhcs.pythonanywhere.com','economicsclubtu.pythonanywhere.com','www.econclub.in'
  'localhost']
 
 
