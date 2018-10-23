@@ -1,17 +1,19 @@
 {% extends 'login/login.html' %}
 {% load staticfiles %}
 {% block body_block %}
-<table>
+<table class="table table-striped table-bordered table-hover table-condensed ">
   <thead>
     <th>StockName</th>
-    <th>CurrentPrice</th>
+    <th align="right">CurrentPrice</th>
   </thead>
-  {% for stock in stocks %}
-  <tr>
-    <td>{{ stock.StockName }}</td>
-    <td>{{ stock.CurrentPrice }}</td>
-  </tr>
-  {%endfor%}
+
+        {% for stock in stocks %}
+        <tr>
+          <td>{{ stock.StockName }}</td>
+          <td>{{ stock.CurrentPrice }}</td>
+        </tr>
+        {%endfor%}
+
 </table>
 
 

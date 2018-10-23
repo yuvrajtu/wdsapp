@@ -25,5 +25,9 @@ urlpatterns = [
     path('user_logout/',views.user_logout,name="user_logout"),
     path('dashboard/',views.dashboard,name="dashboard"),
     path('news/',views.News,name="news"),
+    path('brokerdashboard/',views.brokerdashboard.as_view(),name="brokerdashboard"),
+    path('dashboard/<int:pk>/',views.deleteUserStockDisplay.as_view(),name="UserStockDisplaydelete"),
+    path('dashboard/create', views.UserStockDisplayCreateView.as_view(), name='stock_create'),
+
 
 ]

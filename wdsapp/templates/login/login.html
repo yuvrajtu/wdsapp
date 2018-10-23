@@ -10,19 +10,32 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
 
         <ul class="nav navbar-nav">
-          <li><a class="navbar-link" href="{% url 'index' %}">&nbsp Django </a></li>
-          <li><a class="navbar-link" href="{% url 'admin:index' %}">&nbsp Admin </a></li>
-          <li><a class="navbar-band" href="{% url 'login:register' %}">&nbsp Register </a></li>
+          <li><a class="navbar-link" href="{% url 'index' %}">&nbsp Home </a></li>
+
+
           {% csrf_token %}
+          {% if user.is_staff %}
+          <li><a class="navbar-band" href="{% url 'brokerdashboard' %}">&nbsp Broker </a></li>
+          <li><a class="navbar-link" href="{% url 'admin:index' %}">&nbsp Admin </a></li>
+          <!--<li><a class="navbar-band" href="{% url 'login:register' %}">&nbsp Register </a></li>-->
+          {% endif %}
+
+
+
           {% if user.is_authenticated %}
+
           <li><a class="navbar-link" href="{% url 'login:news' %}">&nbsp News </a></li>
           <li><a class="navbar-link" href="{% url 'login:stockprice' %}">&nbsp Stock Price </a></li>
-           <li><a class="navbar-link" href="{% url 'login:dashboard' %}">&nbsp dashboard </a></li>
-           <li><a class="navbar-link" href="{% url 'login:user_logout' %}">&nbsp logout </a></li>
+          <li><a class="navbar-link" href="{% url 'login:dashboard' %}">&nbsp dashboard </a></li>
+          <li><a class="navbar-link" href="{% url 'login:user_logout' %}">&nbsp logout </a></li>
 
           {% else %}
             <li><a class="navbar-link" href="{% url 'login:userlogin' %}">&nbsp Login </a></li>
           {% endif %}
+
+          
+
+
         </ul>
      </div>
    </nav>

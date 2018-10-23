@@ -1,15 +1,18 @@
-from django.shortcuts import render
-from login.forms import UserForm,UserProfileInfoForm
+from django.shortcuts import render,redirect
+from login.forms import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
 
+from login.models import *
+from django.contrib.auth.models import User
+from django.views import generic
 
-from login.models import News,Stock
-
-
+from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
@@ -81,7 +84,34 @@ def user_logout(request):
 
 @login_required
 def dashboard(request):
-    return render(request,'login/dashboard.html')
+
+
+#     if request.method=="POST":
+#          dash_form=UserStockDisplayForm(data=request.POST)
+#          if (dash_form.is_valid()):
+#              print(request.user.username)
+#              #dash_form.TeamId=request.user.username
+#              dash_form.author=UserProfileInfo.objects.get(user=request.user)
+#              dash_form.save()
+#
+      user_dashdata=UserStockDisplay.objects.all()
+      UserStockDisplayDic={'dashdata':user_dashdata}
+      return render(request,'login/dashboard.html',{'dashdata':user_dashdata})
+
+class UserStockDisplayCreateView(LoginRequiredMixin,generic.CreateView):
+	model=UserStockDisplay
+	form_class=UserStockDisplayForm
+	template_name='login/userstockcreate.html'
+
+	def form_valid(self,form):
+		userStockDisplay=form.save(commit=False)
+        # form.instance.author = self.request.user
+		userStockDisplay.author=self.request.user
+		userStockDisplay.save()
+		return redirect('login:dashboard')
+
+
+
 
 
 @login_required
@@ -96,3 +126,19 @@ def stockprice(request):
     stock_list=Stock.objects.all()
     StockDic={'stocks':stock_list}
     return render(request,'login/stockprice.html',context=StockDic)
+
+
+
+class brokerdashboard(generic.ListView):
+    template_name='login/brokerdashboard.html'
+    context_object_name='brokerdashdata'
+
+    def get_queryset(self):
+        return UserStockDisplay.objects.all()
+
+
+class deleteUserStockDisplay(generic.DeleteView):
+    print("deleteblock")
+    template_name='login/dashboard.html'
+    model=UserStockDisplay
+    success_url =reverse_lazy('login:dashboard')

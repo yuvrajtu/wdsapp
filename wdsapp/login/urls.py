@@ -12,4 +12,6 @@ path('dashboard/',views.dashboard,name='dashboard'),
 path('user_logout/',views.user_logout,name='user_logout'),
 path('news/',views.news,name='news'),
 path('stockprice/',views.stockprice,name='stockprice'),
+#path('dashboard/create', views.UserStockDisplayCreateView.as_view(), name='stock_create'),
+
 ]
